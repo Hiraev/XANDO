@@ -15,7 +15,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommandLineGame implements Game {
-    private Logic logic = new Logic(this);
+    private Logic logic = Logic.getInstance(this);
     private String playerOne;
     private String playerTwo;
     private boolean game = true;

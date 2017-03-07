@@ -6,6 +6,7 @@
  */
 public class Logic {
     private final String SPECIAL_SYMBOL = "•";
+    private static Logic instance;
 
     enum Player {
         X, O;
@@ -26,7 +27,7 @@ public class Logic {
      *
      * @param game - необходим для вызова метода end()
      */
-    public Logic(Game game) {
+    private Logic(Game game) {
         this.game = game;
         board = new String[3][3];
         player = Player.X;
@@ -35,6 +36,22 @@ public class Logic {
                 board[i][j] = SPECIAL_SYMBOL;
             }
         }
+    }
+
+    /**
+     * Данный класс может быть создан в единственном экземляре.
+     * Ссылку на созданный класс можно получить через этот метод.
+     *
+     * @param game - нужен для передачи в конструктор
+     * @return - возращает instance, при первом вызове
+     * создается объект Logic, при последующих вызовах
+     * возращается уже имеющийся объект.
+     */
+    public static Logic getInstance(Game game) {
+        if (instance == null) {
+            instance = new Logic(game);
+        }
+        return instance;
     }
 
     public String getBoard() {
