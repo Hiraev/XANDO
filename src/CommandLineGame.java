@@ -11,7 +11,6 @@
  * считывания команд.
  */
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommandLineGame implements Game {
@@ -94,12 +93,13 @@ public class CommandLineGame implements Game {
     }
 
     private int checkStoke() {
-        int stoke = 0;
+        int stoke;
+        String stokeStr = scanner.nextLine().trim();
         try {
-            stoke = scanner.nextInt();
-        } catch (InputMismatchException e) {
+            stoke = Integer.parseInt(stokeStr);
+        } catch (NumberFormatException e) {
             System.out.println("Введите корректное значение ячейки: 1-9");
-            checkStoke();
+            stoke = checkStoke();
         }
         return stoke;
     }
