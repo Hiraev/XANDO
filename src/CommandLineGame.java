@@ -52,7 +52,7 @@ public class CommandLineGame implements Game {
             }
             if (logic.next(checkStoke())) {
                 switchPlayer = !switchPlayer;
-                System.out.println("\n" + logic.getBoard());
+                System.out.println("\n" + boardToString(logic.getBoard()));
             }
         }
     }
@@ -102,5 +102,13 @@ public class CommandLineGame implements Game {
             checkStoke();
         }
         return stoke;
+    }
+
+    private String boardToString(String[][] board){
+        return  " " + board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " \n" +
+                "-----------\n" +
+                " " + board[1][0] + " | " + board[1][1] + " | " + board[1][2] + " \n" +
+                "-----------\n" +
+                " " + board[2][0] + " | " + board[2][1] + " | " + board[2][2] + " \n";
     }
 }
